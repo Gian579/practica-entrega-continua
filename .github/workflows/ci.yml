@@ -1,0 +1,23 @@
+name: Integración Continua
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar que exista index.html
+        run: |
+          if [ -f index.html ]; then
+            echo "Todo correcto"
+          else
+            echo "No existe index.html"
+            exit 1
+          fi
