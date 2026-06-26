@@ -13,11 +13,12 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v4
 
-      - name: Verificar que exista index.html
+      - name: Verificar existencia del HTML
         run: |
-          if [ -f index.html ]; then
-            echo "Todo correcto"
-          else
-            echo "No existe index.html"
-            exit 1
-          fi
+          test -f index.html
+          echo "Archivo encontrado"
+
+      - name: Ejecutar prueba
+        run: |
+          chmod +x tests/test.sh
+          ./tests/test.sh
